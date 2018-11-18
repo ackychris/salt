@@ -1,0 +1,56 @@
+install bustech tools:
+  pkg.installed:
+    - pkgs:
+      - smartmontools
+      - eek
+      - ccleaner
+      - GSmartControl
+      - defraggler 
+      - adobereader
+      - cdburnerxp
+      - chrome
+      - firefox
+      - jre8
+      - libreoffice
+      - thunderbird
+      - vlc
+      - itunes
+startbits:
+  service.running:
+    - name: BITS
+    - enable: True
+startwua:
+  service.running:
+    - name: wuauserv
+    - enable: True
+stopcuet:
+  service.dead:
+    - name: diagtrack
+    - enable: False
+stopdmwappush:
+  service.dead:
+    - name: dmwappushservice
+    - enable: False
+setbits:
+  cmd.run:
+    - name: 'sc config BITS start= delayed-auto'
+setwua:
+  cmd.run:
+    - name: 'sc config wuauserv start= delayed-auto'
+turn off hibernate:
+  cmd.run:
+    - name: 'powercfg -h off'
+set monitor timeout:
+  cmd.run:
+    - name: 'powercfg -x -monitor-timeout-ac 30'
+set sleep timeout:
+  cmd.run:
+    - name: 'powercfg -x -standby-timeout-ac 0'
+eekupdate:
+  cmd.run:
+    - name: 'Start /wait a2cmd.exe /u'
+    - cwd: C:/EEK/BIN64
+eekscan:
+  cmd.run:
+    - name: 'Start /wait a2cmd.exe /malware /pup /a /m /t /quick /rk /l=C:\Users\Public\Desktop\eekscan.txt'
+    - cwd: C:/EEK/BIN64

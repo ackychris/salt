@@ -1,0 +1,27 @@
+{%if not grains['owner'] == ['shop']%}
+
+startbits:
+  cmd.run:
+    - name: net start BITS
+startwua:
+  cmd.run:
+    - name: net start wuauserv
+stopcuet:
+  cmd.run:
+    - name: net stop diagtrack
+stopdmwappush:
+  cmd.run:
+    - name: net stop dmwappushservice
+setbits:
+  cmd.run:
+    - name: 'sc config BITS start= delayed-auto'
+setwua:
+  cmd.run:
+    - name: 'sc config wuauserv start= delayed-auto'
+setcuet:
+  cmd.run:
+    - name: 'sc config diagtrack start= disabled'
+setdmwappush:
+  cmd.run:
+    - name: 'sc config dmwappushservice start= disabled'
+{%endif%}

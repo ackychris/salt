@@ -1,0 +1,148 @@
+install bustech tools:
+  pkg.installed:
+    - pkgs:
+      - ccleaner: 5.42
+      - defraggler: latest
+      - GSmartControl: latest
+      - malwarebytes: latest
+      - eek: latest
+      - superantispyware6: latest
+remove hitman folder:
+  file.absent:
+    - name: 'C:\ProgramData\HitmanPro'
+move hitman to minion:
+  file.managed:
+    - source:
+      - salt://installers/HitmanPro_x64.exe
+    - name: 'C:\Users\Public\Desktop\HitmanPro_x64.exe'
+move hitman exclusion list:
+  file.managed:
+    - source:
+      - salt://installers/excludelist.txt
+    - name: 'C:\excludelist.txt'
+
+# Manages startup of system services
+
+startbits:
+  service.running:
+    - name: BITS
+    - enable: True
+startwua:
+  service.running:
+    - name: wuauserv
+    - enable: True
+stopcuet:
+  service.dead:
+    - name: diagtrack
+    - enable: False
+stopdmwappush:
+  service.dead:
+    - name: dmwappushservice
+    - enable: False
+setbits:
+  cmd.run:
+    - name: 'sc config BITS start= delayed-auto'
+setwua:
+  cmd.run:
+    - name: 'sc config wuauserv start= delayed-auto'
+turn off hibernate:
+  cmd.run:
+    - name: 'powercfg -h off'
+
+# Sets up for local update server
+
+set wua server:
+  reg.present:
+    - name: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+    - vname: WUServer
+    - vdata: http://192.168.0.36:8530
+set wua status server:
+  reg.present:
+    - name: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+    - vname: WUStatusServer
+    - vdata: http://192.168.0.36:8530
+enable wua target:
+  reg.present:
+    - name: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+    - vname: TargetGroupEnabled
+    - vtype: REG_DWORD
+    - vdata: '1'
+set wua target:
+  reg.present:
+    - name: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+    - vname: TargetGroup
+    - vdata: "Customer Workstations"
+enable wus:
+  reg.present:
+    - name: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+    - vname: UseWUServer
+    - vtype: REG_DWORD
+    - vdata: '1'
+set au:
+  reg.present:
+    - name: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+    - vname: NoAutoUpdate
+    - vtype: REG_DWORD
+    - vdata: '0'
+
+disable telemetry:
+  reg.present:
+    - name: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+    - vname: AllowTelemetry
+    - vtype: REG_DWORD
+    - vdata: '0'
+
+# Restarts WU, sets powersettings
+
+restart wuau:
+  service.running:
+    - name: wuauserv
+    - reload: True
+set monitor timeout:
+  powercfg.set_timeout:
+    - name: monitor
+    - power: ac
+    - value: 1800
+    - scheme: 381b4222-f694-41f0-9685-ff5bb260df2e
+set sleep timeout:
+  powercfg.set_timeout:
+    - name: standby
+    - power: ac
+    - value: 0
+    - scheme: 381b4222-f694-41f0-9685-ff5bb260df2e
+set dc monitor:
+  powercfg.set_timeout:
+    - name: monitor
+    - power: dc
+    - value: 1800
+    - scheme: 381b4222-f694-41f0-9685-ff5bb260df2e
+set dc sleep:
+  powercfg.set_timeout:
+    - name: standby
+    - power: dc
+    - value: 900
+    - scheme: 381b4222-f694-41f0-9685-ff5bb260df2e
+enable balanced plan:
+  cmd.run:
+    - name: 'powercfg /S 381b4222-f694-41f0-9685-ff5bb260df2e'
+eekupdate:
+  cmd.run:
+    - name: 'Start /wait a2cmd.exe /u'
+    - cwd: C:/EEK/BIN64
+    - bg: True
+start hitman:
+  cmd.run:
+    - name: 'start "" "C:\Users\Public\Desktop\HitmanPro_x64.exe" /excludelist="C:\excludelist.txt" /scan /noinstall'
+    - bg: True
+
+startwua:
+  service.dead:
+    - name: wuauserv
+
+startwua:
+  service.running:
+    - name: wuauserv
+    - enable: True
+
+# Disables Windows 10 background apps
+

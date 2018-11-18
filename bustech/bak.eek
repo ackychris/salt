@@ -1,0 +1,12 @@
+{% set PROGRAM_FILES = "%C:\%" %}
+eek:
+  '1.0':
+    full_name: 'Emsisoft Emergency Kit'
+    installer: 'https://dl.emsisoft.com/EmsisoftEmergencyKit.exe'
+    install_flags: '/S'
+    #uninstaller: '{{ PROGRAM_FILES }}\CCleaner\uninst.exe'
+    uninstall_flags: '/S'
+    msiexec: False
+    locale: en_US
+    reboot: False
+

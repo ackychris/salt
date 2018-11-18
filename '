@@ -1,0 +1,4 @@
+base:
+  /srv/salt
+bustech:
+  /srv/salt/

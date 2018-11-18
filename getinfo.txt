@@ -1,0 +1,3 @@
+wmic cpu get name, numberofcores, maxclockspeed, status
+salt '*' status.diskusage human_readable=True
+

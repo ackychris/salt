@@ -1,0 +1,5 @@
+eekscan:
+  cmd.run:
+    - name: 'Start /wait a2cmd.exe /malware /pup /a /m /t /quick /rk /l=C:\Users\Public\Desktop\eekscan.txt'
+    - cwd: C:/EEK/BIN64
+

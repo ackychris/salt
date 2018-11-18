@@ -1,0 +1,98 @@
+{% for version, dl_version in [('5.43', '543')] %}
+	directory mask = 0775
+'https://download.ccleaner.com/ccsetup{{ dl_version }}.exe'
+
+http://sourceforge.net/projects/gsmartcontrol/files/1.1.3/gsmartcontrol-1.1.3-win64.exe
+
+mbam: local
+eek: local
+
+'http://cdn.superantispyware.com/SUPERAntiSpyware.exe'
+'http://download.piriform.com/dfsetup220.exe'
+
+'http://www.mediafire.com/download/wl5nbjaki7zbssn/ClassicShellSetup_4_2_4.exe'
+
+https://www.libreoffice.org/donate/dl/win-x86_64/6.0.5/en-US/LibreOffice_6.0.5_Win_x64.msi
+
+https://fpdownload.macromedia.com/get/shockwave/default/english/win95nt/latest/sw_lic_full_ins
+
+taller.msi
+
+
+install 7zip:
+  chocolatey.installed:
+    - name: 7zip
+install superantispyware:
+  chocolatey.installed:
+    - name: superantispyware
+install defraggler:
+  chocolatey.installed:
+    - name: defraggler
+install ccleaner:
+  chocolatey.installed:
+    - name: ccleaner
+install adblockie:
+  chocolatey.installed:
+    - name: adblockplusie
+install adblockchrome:
+  chocolatey.installed:
+    - name: adblockpluschrome
+install adblockfire:
+  chocolatey.installed:
+    - name: adblockplus-firefox
+install malwarebytes:
+  chocolatey.installed:
+    - name: malwarebytes
+install googlechrome:
+  chocolatey.installed:
+    - name: googlechrome
+install firefox:
+  chocolatey.installed:
+    - name: firefox
+install adblockchrome:
+  chocolatey.installed:
+    - name: adblockpluschrome
+install adblockfire:
+  chocolatey.installed:
+    - name: adblockplus-firefox
+*install libreoffice:
+  chocolatey.installed:
+    - name: libreoffice-fresh
+install dotnet45:
+  chocolatey.installed:
+    - name: dotnet4.5
+install dotnet47:
+  chocolatey.installed:
+    - name: dotnet4.7
+*install adobereader:
+  chocolatey.installed:
+    - name: adobereader
+*install adobeair:
+  chocolatey.installed:
+    - name: adobeair
+*install shockwaveplayer:
+  chocolatey.installed:
+    - name: adobeshockwaveplayer
+install adobe flashplayer:
+  chocolatey.installed:
+    - name: flashplayerppapi
+#install malwarebytes:
+#  chocolatey.installed:
+#    - name: malwarebytes
+install cdburnerxp:
+  chocolatey.installed:
+    - name: cdburnerxp
+install itunes:
+  chocolatey.installed:
+    - name: itunes
+install vlc:
+  chocolatey.installed:
+    - name: vlc
+https://mirror.sfo12.us.leaseweb.net/videolan/vlc/3.0.3/win64/vlc-3.0.3-win64.exe
+install java 8:
+  chocolatey.installed:
+    - name: jre8
+install classic shell:
+                                           
+
+
