@@ -1,6 +1,6 @@
 # both 32-bit (x86) AND a 64-bit (AMD64) installer available
 itunes:
-  {% for version in ['12.9.0.167', '12.8.0.150', '12.7.3.46'] %}
+  {% for version in ['12.9.2.6', '12.9.1.4', '12.9.0.167', '12.8.0.150', '12.7.3.46'] %}
   '{{ version }}':
     full_name: 'iTunes'
     {% if grains['cpuarch'] == 'AMD64' %}

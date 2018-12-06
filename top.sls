@@ -23,9 +23,8 @@ base:
   'reload-*':
     - lazagne
     - copyprofile
+    - uninstfile
 
-  'esd-*':
-    - basepackages
 
   'G@os:Windows and G@owner:customer':
     - match: compound

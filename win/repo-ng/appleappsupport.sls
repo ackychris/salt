@@ -1,6 +1,6 @@
 # both 32-bit (x86) AND a 64-bit (AMD64) installer available
 appleappsupport:
-  {% for version in ['6.6'] %}
+  {% for version in ['7.2', '7.1', '7.0.2', '6.6'] %}
   '{{ version }}':
     full_name: 'Apple Application Support (64-bit)'
     installer: 'salt://installers/iTunes64Setup/AppleApplicationSupport64.msi'

@@ -61,7 +61,7 @@ updateeek:
 remove old eek:
   file.absent:
     - name: 'C:\EEK'
-copy shortcuts over:
+shortcutsfile:
   file.recurse:
     - name: 'C:\Users\Public\Desktop\Bustech Tools'
     - source: salt://installers/shortcuts

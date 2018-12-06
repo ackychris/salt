@@ -15,9 +15,6 @@ rstudio registry:
     - source:
       - salt://installers/rstudio.reg
     - name: 'C:\rstudio.reg'
-install rstudio:
-  pkg.installed:
-    - name: rstudio
 import registry key:
   cmd.run:
     - name: 'reg import rstudio.reg'

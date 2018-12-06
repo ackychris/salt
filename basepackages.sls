@@ -1,29 +1,63 @@
-install base application set:
+libreoffice:
+  pkg.installed
+adobeair:
   pkg.installed:
-    - pkgs:
-      - libreoffice
-      - adobeair: latest
-      - adobereader-dc18: latest
-      - adobeshockwaveplayer: latest
-      - vcredist2010_x64
-      - vlc: latest
-      - 7zip: latest
-      - chrome
-      - firefox: latest
-      - cdburnerxp: latest
-      - jre8: latest
-      - adobeflashppapi: latest
-      - adobeflashnpapi: latest
-      - appleappsupport
-      - appleappsupport32
-      - applemobilesupport
-      - itunes: latest
-      {% if grains['osfinger'] == 'Windows-7' %}
-      - adobeflashactivex: latest
-      {% endif %}
-      {% if grains['osfinger'] == 'Windows-10' %}
-      - classicshell
-      {% endif %}
+    - version: latest
+adobereader-dc18:
+  pkg.installed:
+    - version: latest
+adobeshockwaveplayer:
+  pkg.installed:
+    - version: latest
+vcredist2010_x64:
+  pkg.installed
+vlc:
+  pkg.installed:
+    - version: latest
+7zip:
+  pkg.installed:
+    - version: latest
+chrome:
+  pkg.installed:
+    - version: latest
+firefox:
+  pkg.installed:
+    - version: latest
+cdburnerxp:
+  pkg.installed:
+    - version: latest
+jre8:
+  pkg.installed:
+    - version: latest
+adobeflashppapi:
+  pkg.installed:
+    - version: latest
+adobeflashnpapi:
+  pkg.installed:
+    - version: latest
+appleappsupport:
+  pkg.installed:
+    - version: latest
+appleappsupport32:
+  pkg.installed:
+    - version: latest
+applemobilesupport:
+  pkg.installed:
+    - version: latest
+itunes:
+  pkg.installed:
+    - version: latest
+{% if grains['osfinger'] == 'Windows-7' %}
+adobeflashactivex:
+  pkg.installed:
+    - version: latest
+
+{% endif %}
+{% if grains['osfinger'] == 'Windows-10' %}
+classicshell:
+  pkg.installed
+{% endif %}
+
 remove googletoolbar:
   pkg.removed:
     - name: googletoolbar
