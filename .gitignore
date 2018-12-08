@@ -4,3 +4,4 @@ hosts
 /sshd/
 *.exe
 *.msi
+*.zip
