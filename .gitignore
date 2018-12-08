@@ -2,3 +2,5 @@
 users_keys.sls
 hosts
 /sshd/
+*.exe
+*.msi

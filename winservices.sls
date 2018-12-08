@@ -70,3 +70,13 @@ change ie home page:
 #    - vname: Search Page
 #    - vtype: REG_SZ
 #    - vdata: 'https://www.google.com'
+
+{%if grains['osfinger'] in ['Windows-10'] %}
+ 
+EnableLongPaths:
+  reg.present:
+    - name: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem
+    - vname: LongPathsEnabled
+    - vtype: REG_DWORD
+    - vdata: '1'
+{%endif%}

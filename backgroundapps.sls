@@ -1,5 +1,5 @@
 
-{%if grains['osfinger'] == 'Windows-10' %}
+{%if grains['osfinger'] in ['Windows-10','Windows-2016Server'] %}
 
 BingWeather_DisabledByUser:
   reg.present:
@@ -765,5 +765,48 @@ InkingandTyping:
     - vname: Enabled
     - vtype: REG_DWORD
     - vdata: '0'
+StartMenuTrackPrograms:
+  reg.present:
+    - name: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    - vname: Start_TrackProgs
+    - vtype: REG_DWORD
+    - vdata: '0'
+FeedbackFrequencyNever:
+  reg.present:
+    - name: HKEY_CURRENT_USER\Software\Microsoft\Siuf\Rules
+    - vname: NumberOfSIUFInPeriod
+    - vtype: REG_DWORD
+    - vdata: '0'
+SettingsSuggestedContent:
+  reg.present:
+    - name: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+    - vname: SubscribedContent-338393Enabled
+    - vtype: REG_DWORD
+    - vdata: '0'
+SettingsSuggestedContent2:
+  reg.present:
+    - name: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+    - vname: SubscribedContent-338394Enabled
+    - vtype: REG_DWORD
+    - vdata: '0'
+SettingsSuggestedContent3:
+  reg.present:
+    - name: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+    - vname: SubscribedContent-353694Enabled
+    - vtype: REG_DWORD
+    - vdata: '0'
+SettingsSuggestedContent4:
+  reg.present:
+    - name: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+    - vname: SubscribedContent-353696Enabled
+    - vtype: REG_DWORD
+    - vdata: '0'
+
+WebsiteLangLocallyRelevant:
+  reg.present:
+    - name: 'HKEY_CURRENT_USER\Control Panel\International\User Profile'
+    - vname: HttpAcceptLanguageOptOut
+    - vtype: REG_DWORD
+    - vdata: '1'
 
 {%endif%}
